@@ -2,12 +2,10 @@
     "todos": [
       {
         "id": "1",
-        "text": "Eat",
+        "title" : "Lol",
+        "description": "Eat",
         "completed": true,
-        "meta": {
-          "author": "John",
-          "createdAt": "today"
-        }
+        "datas": "idk"
       }
      
     ]

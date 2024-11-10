@@ -1,16 +1,15 @@
 
- interface ITodo{
+ export interface ITodo{
     id: number,
     title : string,
     description : string,
     completed : boolean,
-    datas: IDatas
+    datas: string
 }
-interface IDatas{
-    createdAt: string,
-    deadline : string,
-}
+// interface IDatas{
+//     createdAt: string,
+//     deadline : string,
+// }
 
 
 
-export default ITodo;
