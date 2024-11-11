@@ -8,8 +8,8 @@ export const TodoAPI = createApi({
     endpoints:( builder) =>({
         getAllTodo : builder.query<ITodo[], number>({query: (limit: number = 5) => ({ url: '/todos',params:{ _limit : limit} }) , providesTags: ['Todos']}),
         createTodo: builder.mutation<ITodo, ITodo>({query:(todo: ITodo ) =>({url: '/todos', method: "POST", body: todo}), invalidatesTags: ['Todos']}),
-
-        
+        deleteTodo : builder.mutation <ITodo , ITodo>({query:(todo : ITodo) =>({url: `/todos/${todo.id}`, method: "DELETE", body: todo}), invalidatesTags: ['Todos']}),
+        updateTodo : builder.mutation<ITodo, ITodo>({query:(todo: ITodo) =>({url : `/todos/${todo.id}`, method : "PUT", body: todo}) , invalidatesTags: ['Todos']}),
         getTodoId : builder.query<ITodo,number>({query: ( id: number) =>({
             url: `/todos/${id}`
         })

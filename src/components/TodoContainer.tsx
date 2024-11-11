@@ -22,8 +22,12 @@ interface ValuesForm{
 const TodoContainer: React.FC  = () =>{
     // const {data  } = TodoAPI.useGetTodoIdQuery(1); 
     const {data , isLoading, error} = TodoAPI.useGetAllTodoQuery(100 )
+    const [deleteTodo, {}] = TodoAPI.useDeleteTodoMutation();
    const [createTodo, {}] = TodoAPI.useCreateTodoMutation();
+   const [updateTodo , {}] = TodoAPI.useUpdateTodoMutation();
    
+
+
    const initialValues : ValuesForm = {title : '', description :'', completed : false, data:{createdAt :"" , deadline : ""}, dataHours: {createdAtHours : "", deadlineHours :""}}
 
 
@@ -31,6 +35,16 @@ const TodoContainer: React.FC  = () =>{
 
         await createTodo({title: todo.title, description: todo.description, completed: todo.completed , data: {createdAt : `${todo.data.createdAt}  `+ todo.dataHours.createdAtHours , deadline : `${todo.data.createdAt} ` +todo.dataHours.deadlineHours}} as unknown as ITodo)
    } 
+
+   const handleRemove = async ( todo: ITodo) =>{
+        deleteTodo(todo)
+   }
+
+const handleUpdate = async(todo:ITodo) =>{
+    updateTodo(todo);
+    
+}
+
    
    return(
         <div>
@@ -58,7 +72,7 @@ const TodoContainer: React.FC  = () =>{
 
         
         {data && data.map(el => 
-        <TodoItem key={el.id} props={el} />    
+        <TodoItem key={el.id} props={el} remove={handleRemove} update={handleUpdate} />    
     )}
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>
