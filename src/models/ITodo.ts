@@ -4,12 +4,12 @@
     title : string,
     description : string,
     completed : boolean,
-    datas: string
+    data: IDatas
 }
-// interface IDatas{
-//     createdAt: string,
-//     deadline : string,
-// }
+interface IDatas{
+    createdAt: string,
+    deadline : string,
+}
 
 
 

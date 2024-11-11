@@ -1,12 +1,24 @@
 {
-    "todos": [
-      {
-        "id": "1",
-        "title" : "Lol",
-        "description": "Eat",
-        "completed": true,
-        "datas": "idk"
+  "todos": [
+    {
+      "id": "1",
+      "title": "Lol",
+      "description": "Eat",
+      "completed": true,
+      "data": {
+        "createdAt": "2024-11-11 16:52",
+        "deadline": "2024-11-11 18:52"
       }
-     
-    ]
-  }
+    },
+    {
+      "id": "aaf7",
+      "title": "Ff",
+      "description": "Hello",
+      "completed": true,
+      "data": {
+        "createdAt": "fdfdfdfd",
+        "deadline": "sdfsdfsdf"
+      }
+    }
+  ]
+}

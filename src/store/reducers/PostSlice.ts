@@ -29,6 +29,14 @@ extraReducers: builder =>{
      state.isLoading = false;
      state.error = "";
      state.todo = action.payload;
+    }),
+    builder.addCase(fetchTodo.pending.type,(state) =>{
+        state.isLoading = true;
+
+    }),
+    builder.addCase(fetchTodo.rejected.type,(state, action: PayloadAction<string>)=>{
+        state.isLoading = true;
+        state.error = action.payload
     })
 }
 })
