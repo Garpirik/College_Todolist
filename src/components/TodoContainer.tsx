@@ -13,6 +13,7 @@ interface ValuesForm{
     description : string,
     completed : boolean
     data: {createdAt : string, deadline : string}
+    dataHours : {createdAtHours : string, deadlineHours: string}
 }
 
 
@@ -23,12 +24,12 @@ const TodoContainer: React.FC  = () =>{
     const {data , isLoading, error} = TodoAPI.useGetAllTodoQuery(100 )
    const [createTodo, {}] = TodoAPI.useCreateTodoMutation();
    
-   const initialValues : ITodo = {title : '', description :'', completed : false, data:{createdAt :"" , deadline : ""}}
+   const initialValues : ValuesForm = {title : '', description :'', completed : false, data:{createdAt :"" , deadline : ""}, dataHours: {createdAtHours : "", deadlineHours :""}}
 
 
    const createTodoButton = async  (todo : ValuesForm)  =>{
 
-        await createTodo({title: todo.title, description: todo.description, completed: todo.completed , data: {createdAt : todo.data.createdAt , deadline : todo.data.createdAt}} as unknown as ITodo)
+        await createTodo({title: todo.title, description: todo.description, completed: todo.completed , data: {createdAt : `${todo.data.createdAt}  `+ todo.dataHours.createdAtHours , deadline : `${todo.data.createdAt} ` +todo.dataHours.deadlineHours}} as unknown as ITodo)
    } 
    
    return(
@@ -47,9 +48,9 @@ const TodoContainer: React.FC  = () =>{
                 <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  />
                 <label htmlFor="title"></label>
                 <Field type="date" id="createdAt" name="data.createdAt" placeholder="Create at"  />
-                <Field type="time" id="createdAt" name="data.createdAt" placeholder="Create at"  />
-                <Field type="date" id="createdAt" name="data.deadline" placeholder="Finish to time"  />
-                <Field type="time" id="createdAt" name="data.deadline" placeholder="Finish to time"  />
+                <Field type="time" id="createdAtHours" name="dataHours.createdAtHours" placeholder="Create at"  />
+                <Field type="date" id="deadline" name="data.deadline" placeholder="Finish to time"  />
+                <Field type="time" id="createdAtHours" name="dataHours.deadlineHours" placeholder="Finish to time"  />
                 <button type="submit">Submit</button>
             </Form>
 

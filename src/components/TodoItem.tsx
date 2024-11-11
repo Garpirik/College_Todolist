@@ -8,7 +8,7 @@ interface TodoItemProps{
 const TodoItem : React.FC <TodoItemProps>  = ({props} ) =>{
     return(
         <div>
-            {props.id} {props.title } {props.description} {props.data.createdAt} {props.data.deadline}
+            {props.id} {props.title } {props.description} data create{props.data.createdAt}  deadline : {props.data.deadline}
         </div>
 
     )
