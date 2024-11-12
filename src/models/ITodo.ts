@@ -5,6 +5,7 @@
     description : string,
     completed : boolean,
     dataEnd: string
+    dataEndHours: string
 }
 
 

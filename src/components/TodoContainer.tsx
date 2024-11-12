@@ -32,9 +32,8 @@ const TodoContainer: React.FC  = () =>{
    const initialValues : ValuesForm = {title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
 
 
-   const createTodoButton = async  (todo : ValuesForm)  =>{
-        let dataConcat = `${todo.dataEnd} ${todo.dataEndHours}`
-        await createTodo({title: todo.title, description: todo.description, completed: todo.completed ,dataEnd: dataConcat } as unknown as ITodo)
+   const createTodoButton = async  (todo : ITodo)  =>{
+        await createTodo({title: todo.title, description: todo.description, completed: todo.completed ,dataEnd: todo.dataEnd , dataEndHours : todo.dataEndHours } as unknown as ITodo)
    } 
 
    const handleRemove = async ( todo: ITodo) =>{
@@ -50,7 +49,7 @@ const TodoContainer: React.FC  = () =>{
         <div>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
-
+        <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />
         {/* <Formik initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}}>
 
             <Form>
