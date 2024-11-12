@@ -3,6 +3,7 @@ import { Form, Formik, Field } from "formik";
 import { ITodo } from "../models/ITodo";
 import { TodoAPI } from "../Service/TodoService";
 import TodoItem from "./TodoItem";
+import FormTodo from "../Form/FormTodo";
 
 // interface IPost{
 //     post: ITodo
@@ -12,8 +13,8 @@ interface ValuesForm{
     title : string,
     description : string,
     completed : boolean
-    data: {createdAt : string, deadline : string}
-    dataHours : {createdAtHours : string, deadlineHours: string}
+    dataEnd: string
+    dataEndHours : string
 }
 
 
@@ -28,30 +29,29 @@ const TodoContainer: React.FC  = () =>{
    
 
 
-   const initialValues : ValuesForm = {title : '', description :'', completed : false, data:{createdAt :"" , deadline : ""}, dataHours: {createdAtHours : "", deadlineHours :""}}
+   const initialValues : ValuesForm = {title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
 
 
    const createTodoButton = async  (todo : ValuesForm)  =>{
-
-        await createTodo({title: todo.title, description: todo.description, completed: todo.completed , data: {createdAt : `${todo.data.createdAt}  `+ todo.dataHours.createdAtHours , deadline : `${todo.data.createdAt} ` +todo.dataHours.deadlineHours}} as unknown as ITodo)
+        let dataConcat = `${todo.dataEnd} ${todo.dataEndHours}`
+        await createTodo({title: todo.title, description: todo.description, completed: todo.completed ,dataEnd: dataConcat } as unknown as ITodo)
    } 
 
    const handleRemove = async ( todo: ITodo) =>{
         deleteTodo(todo)
    }
 
-const handleUpdate = async(todo:ITodo) =>{
+    const handleUpdate = async(todo:ITodo) =>{
     updateTodo(todo);
-    
-}
+   }
 
    
    return(
         <div>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
-        
-        <Formik initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}}>
+
+        {/* <Formik initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}}>
 
             <Form>
                 <label htmlFor="title"></label>
@@ -61,18 +61,17 @@ const handleUpdate = async(todo:ITodo) =>{
                 <label htmlFor="title"></label>
                 <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  />
                 <label htmlFor="title"></label>
-                <Field type="date" id="createdAt" name="data.createdAt" placeholder="Create at"  />
-                <Field type="time" id="createdAtHours" name="dataHours.createdAtHours" placeholder="Create at"  />
-                <Field type="date" id="deadline" name="data.deadline" placeholder="Finish to time"  />
-                <Field type="time" id="createdAtHours" name="dataHours.deadlineHours" placeholder="Finish to time"  />
+                <Field type="date" id="createdAt" name="dataEnd" placeholder="Create at"  />
+                <Field type="time" id="createdAtHours" name="dataEndHours" placeholder="Create at"  />
+  
                 <button type="submit">Submit</button>
             </Form>
 
-        </Formik>
+        </Formik> */}
 
         
         {data && data.map(el => 
-        <TodoItem key={el.id} props={el} remove={handleRemove} update={handleUpdate} />    
+        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} />    
     )}
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>

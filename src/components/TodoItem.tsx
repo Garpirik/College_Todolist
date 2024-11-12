@@ -1,22 +1,27 @@
+import React, { useState } from "react";
 import { ITodo } from "../models/ITodo";
 import { TodoAPI } from "../Service/TodoService";
 
 interface TodoItemProps{
-    props : ITodo;
+    todo  : ITodo;
     remove : ((todo: ITodo) => void )
     update : ((todo: ITodo) => void)
 }
 
 
-const TodoItem : React.FC <TodoItemProps>  = ({props, remove} ) =>{
+const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update} ) =>{
+    const [isEdit, setEdit] = useState(false;)
+     
+    const handleUpdate = ( updateTodo : ITodo)  =>{
+            update(updateTodo)
+    }
 
-    
 
 
     return(
         <div>
-            {props.id} {props.title } {props.description} data create{props.data.createdAt}  deadline : {props.data.deadline}
-            <button onClick={() => remove(props)}>Delete</button>
+            {todo.id} {todo.title } {todo.description}  deadline :  {todo.dataEnd} 
+            <button onClick={() => remove(todo)}>Delete</button>
         </div>
 
     )
