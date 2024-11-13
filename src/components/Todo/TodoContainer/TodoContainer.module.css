@@ -1,0 +1,11 @@
+.wrapperTodo{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    justify-content: space-between;
+    gap: 10px;
+    height: 100px;
+
+}
+.wrapper{
+    margin:  0 10% 0 10%;    
+}

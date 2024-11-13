@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from "formik"
-import { ITodo } from "../models/ITodo"
+import { ITodo } from "../../models/ITodo"
 
 interface ValuesForm{
         title : string,
@@ -23,13 +23,13 @@ const FormTodo  = ({initialValues, onSubmit} : FormProps) =>{
 
             <Form>
                 <label htmlFor="title"></label>
-                <Field id="title" name="title" placeholder="Title Todo" />
+                <Field id="title" name="title" placeholder="Title Todo"  required/>
                 <label htmlFor="title"></label>
                 <Field id="description" name="description" placeholder="description Todo" />
                 <label htmlFor="title"></label>
                 <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  />
                 <label htmlFor="title"></label>
-                <Field type="date" id="createdAt" name="dataEnd" placeholder="Create at"  />
+                <Field type="date" id="createdAt" name="dataEnd" placeholder="Create at" required />
                 <Field type="time" id="createdAtHours" name="dataEndHours" placeholder="Create at"  />
   
                 <button type="submit">Submit</button>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ITodo } from "../models/ITodo";
-import { TodoAPI } from "../Service/TodoService";
-import FormTodo from "../Form/FormTodo";
+import { ITodo } from "../../../models/ITodo";
+import FormTodo from "../../Form/FormTodo";
+import s from "../TodoItem/TodoItem.module.css"
 
 interface TodoItemProps{
     todo  : ITodo;
@@ -20,8 +20,10 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update} ) =>{
 
 
     return(
-        <div>
-            {todo.id} {todo.title } {todo.description}  deadline :  {todo.dataEnd} {todo.dataEndHours} 
+        <div className={s.itemTodoWrapper}>
+            <h1> {todo.title }</h1>
+            <p>{todo.description} </p> 
+            <p> deadline :   {todo.dataEnd}  </p>
             <button onClick={() => remove(todo)}>Delete</button>
             <button onClick={() => setEdit(!isEdit)}>Edit</button>
             {isEdit && <FormTodo initialValues={todo} onSubmit={(value) => handleUpdate(value)}/>}

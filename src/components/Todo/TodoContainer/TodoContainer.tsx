@@ -1,9 +1,9 @@
+import { ITodo } from "../../../models/ITodo";
+import { TodoAPI } from "../../../Service/TodoService";
+import FormTodo from "../../Form/FormTodo";
+import TodoItem from "../TodoItem/TodoItem";
+import s from "../TodoContainer/TodoContainer.module.css"
 
-import { Form, Formik, Field } from "formik";
-import { ITodo } from "../models/ITodo";
-import { TodoAPI } from "../Service/TodoService";
-import TodoItem from "./TodoItem";
-import FormTodo from "../Form/FormTodo";
 
 // interface IPost{
 //     post: ITodo
@@ -46,7 +46,7 @@ const TodoContainer: React.FC  = () =>{
 
    
    return(
-        <div>
+        <div className={s.wrapper}>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
         <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />
@@ -67,11 +67,12 @@ const TodoContainer: React.FC  = () =>{
             </Form>
 
         </Formik> */}
-
-        
+    <div className={s.wrapperTodo}>
         {data && data.map(el => 
         <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} />    
+        
     )}
+    </div>
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>
     )
