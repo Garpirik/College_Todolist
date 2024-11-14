@@ -15,12 +15,7 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update} ) =>{
     const [isComplete , setComplete] = useState(todo.completed)
     let IsEnded: number   = (new Date()).getTime();
     const deadlineData: Date = new Date(Number(todo.dataEnd.slice(0,4)) , Number(todo.dataEnd.slice(5,7 ) ) -1, Number(todo.dataEnd.slice(8,10)) )
-    // console.log(todo.dataEnd.slice(0,4))
-    // console.log(todo.dataEnd.slice(5,7))
-    // console.log(Number(todo.dataEnd.slice(8,10)))
-    // console.log(deadlineData.getDay())
 
-    // console.log(Number(todo.dataEndHours.slice(0,2)))
     const handleUpdate = ( updateTodo : ITodo)  =>{
             update(updateTodo)
     }
