@@ -1,3 +1,24 @@
 .itemTodoWrapper{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid rgba(128, 128, 128, 0.411);
+    height: 220px;
 }
+
+.buttonsControl{
+    display: flex;
+   justify-items: flex-end;
+    justify-content: right;
+    
+}
+.buttonsControl button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+h1{
+    text-align: center;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.411);
+}
+

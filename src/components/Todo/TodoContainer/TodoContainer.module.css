@@ -2,10 +2,13 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     justify-content: space-between;
-    gap: 10px;
-    height: 100px;
+    gap: 5px;
+    height: 220px;
+    margin:  0 10% 0 10%;    
+  margin-top: 5%;
+ 
 
 }
 .wrapper{
-    margin:  0 10% 0 10%;    
+
 }

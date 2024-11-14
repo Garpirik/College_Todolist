@@ -29,11 +29,14 @@ console.log("IsEnded",IsEnded)
             <p>{todo.description} </p> 
             <p> deadline :   {todo.dataEnd}  </p>
             <input type="checkbox" checked={isComplete}  onClick={() => setComplete(!isComplete)}/>
-            <button onClick={() => remove(todo)}>Delete</button>
-            <button onClick={() => setEdit(!isEdit)}>Edit</button>
+            <div className={s.buttonsControl}>
+            <button onClick={() => setEdit(!isEdit)}><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" width="24px" height="24px" /></button>
+            <button onClick={() => remove(todo)}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"  width="24px" height="24px" /></button>
+            
+            </div>
             {isEdit && <FormTodo initialValues={todo} onSubmit={(value) => {handleUpdate(value); setEdit(!isEdit)}}/>}
         
-            year:{deadlineData.getFullYear()} month : {deadlineData.getMonth()} days : {deadlineData.getDate()}
+            {/* year:{deadlineData.getFullYear()} month : {deadlineData.getMonth()} days : {deadlineData.getDate()} */}
              {IsEnded  > Number(deadlineData) && !isComplete ? <div>End task</div> : " "}
         </div>
    

@@ -49,7 +49,7 @@ const TodoContainer: React.FC  = () =>{
         <div className={s.wrapper}>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
-        <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />
+
         {/* <Formik initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}}>
 
             <Form>
@@ -72,6 +72,7 @@ const TodoContainer: React.FC  = () =>{
         <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} />    
         
     )}
+        <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />
     </div>
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>
