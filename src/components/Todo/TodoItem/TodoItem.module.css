@@ -4,6 +4,16 @@
     height: 220px;
 }
 
+.itemTodoWrapperDrag{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid rgba(128, 128, 128, 0.411);
+    height: 220px;
+    scale: 1.1;
+    transition-duration: 0.5s;
+    opacity: 0;
+
+}
+
 .buttonsControl{
     display: flex;
    justify-items: flex-end;

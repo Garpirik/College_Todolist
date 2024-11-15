@@ -60,13 +60,13 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update, moveCard, i
   
         // Get vertical middle
         const hoverMiddleY =
-          (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+          (hoverBoundingRect.right - hoverBoundingRect.left) / 2
   
         // Determine mouse position
         const clientOffset = monitor.getClientOffset()
   
         // Get pixels to the top
-        const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+        const hoverClientY = (clientOffset as XYCoord).x - hoverBoundingRect.left
   
         // Only perform the move when the mouse has crossed half of the items height
         // When dragging downwards, only move when the cursor is below 50%
@@ -111,7 +111,7 @@ console.log("IsEnded",IsEnded)
 drag(drop(ref))
 
     return(
-        <div className={s.itemTodoWrapper} ref={ref} data-handler-id={handlerId}>
+        <div className={isDragging ?s.itemTodoWrapperDrag :s.itemTodoWrapper} ref={ref} data-handler-id={handlerId} draggable={false}>
             <h1> {todo.title }</h1>
             <p>{todo.description} </p> 
             <p> deadline :   {todo.dataEnd}  </p>
