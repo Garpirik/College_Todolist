@@ -3,11 +3,8 @@ import { TodoAPI } from "../../../Service/TodoService";
 import FormTodo from "../../Form/FormTodo";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "../TodoContainer/TodoContainer.module.css"
-
-
-// interface IPost{
-//     post: ITodo
-// }
+import { useCallback, useEffect, useState } from "react";
+import update from 'immutability-helper'
 
 interface ValuesForm{
     title : string,
@@ -22,14 +19,32 @@ interface ValuesForm{
 
 const TodoContainer: React.FC  = () =>{
     // const {data  } = TodoAPI.useGetTodoIdQuery(1); 
-    const {data , isLoading, error} = TodoAPI.useGetAllTodoQuery(100 )
+    const {data , isLoading, error, } = TodoAPI.useGetAllTodoQuery(100, {pollingInterval : 10000} )
     const [deleteTodo, {}] = TodoAPI.useDeleteTodoMutation();
    const [createTodo, {}] = TodoAPI.useCreateTodoMutation();
    const [updateTodo , {}] = TodoAPI.useUpdateTodoMutation();
-   
-
-
+   const [todos , setTodos] = useState<ITodo[]>(data || []) 
    const initialValues : ValuesForm = {title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
+
+
+  useEffect(() =>{
+    if(data){
+    setTodos(data)}
+  }, [data])
+   
+    const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+        setTodos((todos) =>
+            update(todos,{
+                $splice:[
+                    [dragIndex ,1] ,
+                    [hoverIndex , 0 , todos[dragIndex] ]
+                ]
+            
+        })
+    );
+    },
+      [todos])
+    
 
 
    const createTodoButton = async  (todo : ITodo)  =>{
@@ -49,27 +64,9 @@ const TodoContainer: React.FC  = () =>{
         <div className={s.wrapper}>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
-
-        {/* <Formik initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}}>
-
-            <Form>
-                <label htmlFor="title"></label>
-                <Field id="title" name="title" placeholder="Title Todo" />
-                <label htmlFor="title"></label>
-                <Field id="description" name="description" placeholder="description Todo" />
-                <label htmlFor="title"></label>
-                <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  />
-                <label htmlFor="title"></label>
-                <Field type="date" id="createdAt" name="dataEnd" placeholder="Create at"  />
-                <Field type="time" id="createdAtHours" name="dataEndHours" placeholder="Create at"  />
-  
-                <button type="submit">Submit</button>
-            </Form>
-
-        </Formik> */}
     <div className={s.wrapperTodo}>
-        {data && data.map(el => 
-        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} />    
+        {todos && todos.map((el, i) => 
+        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} moveCard = {moveCard} index={i}/>    
         
     )}
         <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />

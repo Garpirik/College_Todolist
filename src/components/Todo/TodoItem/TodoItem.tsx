@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ITodo } from "../../../models/ITodo";
 import FormTodo from "../../Form/FormTodo";
 import s from "../TodoItem/TodoItem.module.css"
-
+import { useDrag, useDrop } from "react-dnd";
+import type { Identifier, XYCoord } from 'dnd-core'
+import TodoContainer from "../TodoContainer/TodoContainer";
 interface TodoItemProps{
     todo  : ITodo;
+    index: number;
     remove : ((todo: ITodo) => void )
     update : ((todo: ITodo) => void)
+    moveCard : (dragIndex: number, hoverIndex: number) => void
+}
+
+interface DragTodo{
+    index: number,
+    id : string
+    type : string
 }
 
 
-const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update} ) =>{
+const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update, moveCard, index} ) =>{
     const [isEdit, setEdit] = useState(false)
     const [isComplete , setComplete] = useState(todo.completed)
     let IsEnded: number   = (new Date()).getTime();
@@ -20,15 +30,92 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update} ) =>{
             update(updateTodo)
     }
 
+
+    const ref = useRef<HTMLDivElement>(null)
+    const [{ handlerId }, drop] = useDrop<
+      DragTodo,
+      void,
+      { handlerId: Identifier | null }
+    >({
+      accept: 'todo',
+      collect(monitor) {
+        return {
+          handlerId: monitor.getHandlerId(),
+        }
+      },
+      hover(item: DragTodo, monitor) {
+        if (!ref.current) {
+          return
+        }
+        const dragIndex = item.index
+        const hoverIndex  = index
+  
+        // Don't replace items with themselves
+        if (dragIndex === hoverIndex) {
+          return
+        }
+  
+        // Determine rectangle on screen
+        const hoverBoundingRect = ref.current?.getBoundingClientRect()
+  
+        // Get vertical middle
+        const hoverMiddleY =
+          (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
+  
+        // Determine mouse position
+        const clientOffset = monitor.getClientOffset()
+  
+        // Get pixels to the top
+        const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
+  
+        // Only perform the move when the mouse has crossed half of the items height
+        // When dragging downwards, only move when the cursor is below 50%
+        // When dragging upwards, only move when the cursor is above 50%
+  
+        // Dragging downwards
+        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+          return
+        }
+  
+        // Dragging upwards
+        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+          return
+        }
+  
+        // Time to actually perform the action
+        moveCard(dragIndex, hoverIndex)
+  
+        // Note: we're mutating the monitor item here!
+        // Generally it's better to avoid mutations,
+        // but it's good here for the sake of performance
+        // to avoid expensive index searches.
+        item.index = hoverIndex
+      },
+    })
+
+
+    const [{ isDragging }, drag] = useDrag({
+      type: 'todo',
+      item: () => {
+        return { id : todo.id, index }
+      },
+      collect: (monitor: any) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    })
+
+
+
 console.log("Time deadline",deadlineData);
 console.log("IsEnded",IsEnded)
+drag(drop(ref))
 
     return(
-        <div className={s.itemTodoWrapper}>
+        <div className={s.itemTodoWrapper} ref={ref} data-handler-id={handlerId}>
             <h1> {todo.title }</h1>
             <p>{todo.description} </p> 
             <p> deadline :   {todo.dataEnd}  </p>
-            <input type="checkbox" checked={isComplete}  onClick={() => setComplete(!isComplete)}/>
+            <input type="checkbox" checked={isComplete}  onChange={() => setComplete(!isComplete)}/>
             <div className={s.buttonsControl}>
             <button onClick={() => setEdit(!isEdit)}><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" width="24px" height="24px" /></button>
             <button onClick={() => remove(todo)}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"  width="24px" height="24px" /></button>
