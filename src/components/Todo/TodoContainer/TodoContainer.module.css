@@ -1,11 +1,12 @@
 .wrapperTodo{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    justify-content: space-between;
+    align-items: start;
     gap: 15px;
-    height: 220px;
     margin:  0 10% 0 10%;    
   margin-top: 5%;
+
+
  
 
 }

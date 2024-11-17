@@ -20,7 +20,7 @@ interface ValuesForm{
 
 const TodoContainer: React.FC  = () =>{
     // const {data  } = TodoAPI.useGetTodoIdQuery(1); 
-    const {data , isLoading, error, } = TodoAPI.useGetAllTodoQuery(100, {pollingInterval : 10000} )
+    const {data , isLoading, error, refetch } = TodoAPI.useGetAllTodoQuery(100, {pollingInterval : 5000} )
     const [deleteTodo, {}] = TodoAPI.useDeleteTodoMutation();
    const [createTodo, {}] = TodoAPI.useCreateTodoMutation();
    const [updateTodo , {}] = TodoAPI.useUpdateTodoMutation();
@@ -67,7 +67,7 @@ const TodoContainer: React.FC  = () =>{
         {error && <div> error </div>}
     <div className={s.wrapperTodo}>
         {todos && todos.map((el, i) => 
-        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate} moveCard = {moveCard} index={i}/>    
+        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
         
     )}
         <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />

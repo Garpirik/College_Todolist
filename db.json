@@ -1,18 +1,10 @@
 {
   "todos": [
     {
-      "id": "7fc5",
-      "title": "FFFF",
-      "description": "fdfsfsdfds",
-      "completed": true,
-      "dataEnd": "2024-11-01",
-      "dataEndHours": ""
-    },
-    {
       "id": "4afb",
       "title": "Need to learn TS",
       "description": "Yessr",
-      "completed": false,
+      "completed": true,
       "dataEnd": "2024-11-14",
       "dataEndHours": "23:40"
     },
@@ -28,7 +20,7 @@
       "id": "bea5",
       "title": "TDDD",
       "description": "TDD",
-      "completed": true,
+      "completed": false,
       "dataEnd": "2024-11-29",
       "dataEndHours": "02:32"
     },
@@ -36,8 +28,24 @@
       "id": "e3bf",
       "title": "TestSS",
       "description": "Testt",
-      "completed": true,
+      "completed": false,
       "dataEnd": "2024-11-21",
+      "dataEndHours": ""
+    },
+    {
+      "id": "c601",
+      "title": "Make a Web",
+      "description": "Web todo list with TS/RTK",
+      "completed": false,
+      "dataEnd": "2024-11-18",
+      "dataEndHours": "16:00"
+    },
+    {
+      "id": "419c",
+      "title": "FFF",
+      "description": "22",
+      "completed": false,
+      "dataEnd": "2024-11-09",
       "dataEndHours": ""
     }
   ]

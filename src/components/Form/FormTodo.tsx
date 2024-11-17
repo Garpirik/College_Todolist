@@ -26,8 +26,8 @@ const FormTodo  = ({initialValues, onSubmit} : FormProps) =>{
                 <Field id="title" name="title" placeholder="Title Todo"  required/>
                 <div><label htmlFor="description">Description</label></div>
                 <Field id="description" name="description" placeholder="description Todo" />
-               <div><label htmlFor="checkbox">Is completed</label></div> 
-               <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  />
+         <div>   <label htmlFor="checkbox">Is completed: </label> 
+               <Field type="checkbox" id="completed" name="completed" placeholder="Title Todo"  /></div>
                 <div><label htmlFor="date">Date</label></div>
                 <Field type="date" id="createdAt" name="dataEnd" placeholder="Create at" required />
                 <div><label htmlFor="time">Time</label></div>
