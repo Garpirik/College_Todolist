@@ -3,16 +3,18 @@ import { TodoAPI } from "../../../Service/TodoService";
 import FormTodo from "../../Form/FormTodo";
 import TodoItem from "../TodoItem/TodoItem";
 import s from "../TodoContainer/TodoContainer.module.css"
-import { useCallback, useEffect, useState } from "react";
+import { isValidElement, useCallback, useEffect, useState } from "react";
 import update from 'immutability-helper'
 
 
 interface ValuesForm{
+    type: string;
     title : string,
     description : string,
     completed : boolean
     dataEnd: string
     dataEndHours : string
+  
 }
 
 
@@ -25,7 +27,20 @@ const TodoContainer: React.FC  = () =>{
    const [createTodo, {}] = TodoAPI.useCreateTodoMutation();
    const [updateTodo , {}] = TodoAPI.useUpdateTodoMutation();
    const [todos , setTodos] = useState<ITodo[]>(data || []) 
-   const initialValues : ValuesForm = {title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
+   const initialValues : ValuesForm = { type : '', title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
+    console.log(todos)
+   const typesTodo  = new Set()
+   let uniqueTypes : string[] = [];
+
+    for(let i : number = 0; i < todos.length ;i++){
+        typesTodo.add(todos[i].type)
+    }
+
+    for(let type of typesTodo){
+        uniqueTypes.push(type)
+    }
+    console.log(typesTodo)
+    console.log("unique",uniqueTypes)
 
 
   useEffect(() =>{
@@ -66,10 +81,10 @@ const TodoContainer: React.FC  = () =>{
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
     <div className={s.wrapperTodo}>
-        {todos && todos.map((el, i) => 
-        <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
+        {typesTodo && typesTodo.forEach(value => {<h1>{value}</h1>})}
+         {todos && todos.map((el, i) =>  <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
         
-    )}
+    )} 
         <FormTodo initialValues={initialValues} textSubmit="Add" onSubmit={(value) => {createTodoButton(value)}} />
     </div>
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}

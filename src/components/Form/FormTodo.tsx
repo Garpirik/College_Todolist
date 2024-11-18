@@ -2,7 +2,8 @@ import { Field, Form, Formik } from "formik"
 import { ITodo } from "../../models/ITodo"
 import s from "../Form/FormTodo.module.css"
 interface ValuesForm{
-        title : string,
+    type: string,    
+    title : string,
         description : string,
         completed : boolean
         dataEnd: string
@@ -23,6 +24,8 @@ const FormTodo  = ({initialValues, onSubmit, textSubmit} : FormProps) =>{
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
 
             <Form className={s.formWrapper}>
+                <label>Type Todo</label>
+                <Field id="type" name="type" placeholder="Type Todo" required/>
                 <div><label htmlFor="title">Title</label></div>
                 <Field id="title" name="title" placeholder="Title Todo"  required/>
                 <div><label htmlFor="description">Description</label></div>
