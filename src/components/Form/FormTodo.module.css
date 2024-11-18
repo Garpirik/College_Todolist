@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 .formWrapper{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border: 1px solid rgba(128, 128, 128, 0.411);
-    height: 200px;
+    font-family: "IBM Plex Serif", serif;
+    font-weight: 400;
 }
 
 label{
     text-align: center;
     font-size: 16px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.411);
-
 }
+
+
 

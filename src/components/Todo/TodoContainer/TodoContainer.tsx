@@ -70,7 +70,7 @@ const TodoContainer: React.FC  = () =>{
         <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
         
     )}
-        <FormTodo initialValues={initialValues} onSubmit={(value) => {createTodoButton(value)}} />
+        <FormTodo initialValues={initialValues} textSubmit="Add" onSubmit={(value) => {createTodoButton(value)}} />
     </div>
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>

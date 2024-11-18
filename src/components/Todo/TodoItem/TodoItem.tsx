@@ -4,7 +4,6 @@ import FormTodo from "../../Form/FormTodo";
 import s from "../TodoItem/TodoItem.module.css"
 import { useDrag, useDrop } from "react-dnd";
 import type { Identifier, XYCoord } from 'dnd-core'
-import TodoContainer from "../TodoContainer/TodoContainer";
 
 interface TodoItemProps{
     todo  : ITodo;
@@ -27,7 +26,8 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update, moveCard,  
     const [isComplete , setComplete] = useState(todo.completed)
 
     let IsEnded: number   = (new Date()).getTime();
-    const deadlineData: Date = new Date(Number(todo.dataEnd.slice(0,4)) , Number(todo.dataEnd.slice(5,7 ) ) -1, Number(todo.dataEnd.slice(8,10)) )
+    const deadlineData: Date = new Date(Number(todo.dataEnd.slice(0,4)) , Number(todo.dataEnd.slice(5,7 ) ) -1, Number(todo.dataEnd.slice(8,10)) , Number(todo.dataEndHours.slice(0,2)) , Number(todo.dataEndHours.slice(3,5)) )
+
 
     const handleUpdate = ( updateTodo : ITodo)  =>{
       update(updateTodo)
@@ -117,16 +117,16 @@ drag(drop(ref))
         <div className={isDragging ? s.itemTodoWrapperDrag : s.itemTodoWrapper} ref={ref} data-handler-id={handlerId} >
 
             <h1> {todo.title }</h1>
-            {IsEnded  > Number(deadlineData) && !isComplete ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv3SHc4p3E8ar7TPeYiIv0Pgy8fTqR-JR5PA&s" width="24px" height="24px" className={s.imgStatus}  />: <img src="https://static-00.iconduck.com/assets.00/process-completed-symbolic-icon-2048x2048-baquwdk1.png" width="24px" height="24px" className={s.imgStatus} />}
+            
+            {IsEnded  > Number(deadlineData) && !isComplete ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv3SHc4p3E8ar7TPeYiIv0Pgy8fTqR-JR5PA&s" width="24px" height="24px" className={s.imgStatus}  />:  isComplete ? <img src="https://static-00.iconduck.com/assets.00/process-completed-symbolic-icon-2048x2048-baquwdk1.png" width="24px" height="24px" className={s.imgStatus} /> : <img src="https://static.thenounproject.com/png/2931158-200.png" width="24px" height="24px" className={s.imgStatus}  /> }
             <p>{todo.description} </p> 
-            <p> deadline :   {todo.dataEnd}  </p>
-            {/* <input type="checkbox" checked={isComplete}  onChange={() => {{setComplete(!isComplete), handleUpdate(todo)}}}/> */}
+            <p> deadline :   {deadlineData.getDay()}.{deadlineData.getMonth()}.{deadlineData.getFullYear()} {todo.dataEndHours}  </p>
             <div className={s.buttonsControl}>
             <button onClick={() => setEdit(!isEdit)}><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" width="24px" height="24px" /></button>
             <button onClick={() => remove(todo)}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"  width="24px" height="24px" /></button>
             
             </div>
-            {isEdit && <FormTodo initialValues={todo} onSubmit={(value) => {handleUpdate(value); setEdit(!isEdit) ; setComplete(value.completed)}}/>}
+            {isEdit && <FormTodo initialValues={todo} textSubmit="Edit" onSubmit={(value) => {handleUpdate(value); setEdit(!isEdit) ; setComplete(value.completed)}}/>}
 
             {/* year:{deadlineData.getFullYear()} month : {deadlineData.getMonth()} days : {deadlineData.getDate()} */}
             

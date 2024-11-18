@@ -13,11 +13,12 @@ interface ValuesForm{
 interface FormProps{
     initialValues : ValuesForm 
     onSubmit :(todo: ITodo) => void;
+    textSubmit : string
 }
 
 
 
-const FormTodo  = ({initialValues, onSubmit} : FormProps) =>{
+const FormTodo  = ({initialValues, onSubmit, textSubmit} : FormProps) =>{
         return(
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
 
@@ -33,7 +34,7 @@ const FormTodo  = ({initialValues, onSubmit} : FormProps) =>{
                 <div><label htmlFor="time">Time</label></div>
                 <Field type="time" id="createdAtHours" name="dataEndHours" placeholder="Create at"  />
             <div>
-                <button type="submit">Submit</button></div>
+                <button type="submit">{textSubmit}</button></div>
             </Form>
 
         </Formik>
