@@ -30,7 +30,6 @@ const TodoContainer: React.FC  = () =>{
    const [updateTodo , {}] = TodoAPI.useUpdateTodoMutation();
    const [todos , setTodos] = useState<ITodo[]>(data || []) 
    const initialValues : ValuesForm = { type : '', title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
-    console.log(todos)
    const typesTodo    = new Set<string>([])
    let uniqueTypes : string[] = [];
 
@@ -41,8 +40,6 @@ const TodoContainer: React.FC  = () =>{
     for(let type of typesTodo){
         uniqueTypes.push(type)
     }
-    console.log(typesTodo)
-    console.log("unique",uniqueTypes)
 
 
   useEffect(() =>{
