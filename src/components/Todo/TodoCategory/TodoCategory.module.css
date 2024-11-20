@@ -1,0 +1,17 @@
+
+
+.TodoCategoryWrapper{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    padding: 4px;
+}
+
+.wrapper{
+    border:  1px solid rgba(128, 128, 128, 0.411);
+}
+
+.titleCategory{
+    font-size: 36px;
+
+}

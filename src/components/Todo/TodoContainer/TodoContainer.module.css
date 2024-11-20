@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 .wrapperTodo{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(2,1fr);
     align-items: start;
-    gap: 15px;
+    gap: 40px;
     margin:  0 10% 0 10%;    
   margin-top: 5%;
   font-family: "IBM Plex Serif", serif;
@@ -12,6 +12,6 @@
  
 
 }
-.wrapper{
-
+.formCreate{
+  margin: 0 40% 0 40%;
 }

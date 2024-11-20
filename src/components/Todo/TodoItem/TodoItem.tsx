@@ -121,6 +121,7 @@ drag(drop(ref))
             {IsEnded  > Number(deadlineData) && !isComplete ? <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv3SHc4p3E8ar7TPeYiIv0Pgy8fTqR-JR5PA&s" width="24px" height="24px" className={s.imgStatus}  />:  isComplete ? <img src="https://static-00.iconduck.com/assets.00/process-completed-symbolic-icon-2048x2048-baquwdk1.png" width="24px" height="24px" className={s.imgStatus} /> : <img src="https://static.thenounproject.com/png/2931158-200.png" width="24px" height="24px" className={s.imgStatus}  /> }
             <p>{todo.description} </p> 
             <p> deadline :   {deadlineData.getDay()}.{deadlineData.getMonth()}.{deadlineData.getFullYear()} {todo.dataEndHours}  </p>
+
             <div className={s.buttonsControl}>
             <button onClick={() => setEdit(!isEdit)}><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" width="24px" height="24px" /></button>
             <button onClick={() => remove(todo)}><img src="https://cdn-icons-png.flaticon.com/512/860/860829.png"  width="24px" height="24px" /></button>

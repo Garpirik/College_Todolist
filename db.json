@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": "4afb",
-      "type" : "Learn",
+      "type": "Learn",
       "title": "Need to learn TS",
       "description": "Yessr",
       "completed": true,
@@ -11,7 +11,7 @@
     },
     {
       "id": "13c7",
-      "type" : "Other",
+      "type": "Other",
       "title": "ffff",
       "description": "fffff",
       "completed": false,
@@ -20,7 +20,7 @@
     },
     {
       "id": "bea5",
-      "type" : "Testing",
+      "type": "Testing",
       "title": "TDDD",
       "description": "TDD",
       "completed": true,
@@ -29,7 +29,7 @@
     },
     {
       "id": "e3bf",
-      "type" : "Testing",
+      "type": "Testing",
       "title": "TestSS",
       "description": "Testt",
       "completed": false,
@@ -38,12 +38,39 @@
     },
     {
       "id": "419c",
-      "type" : "Other",
+      "type": "Other",
       "title": "FFF",
       "description": "22",
       "completed": false,
       "dataEnd": "2024-11-09",
       "dataEndHours": ""
+    },
+    {
+      "id": "1bad",
+      "title": "CategoryTest2",
+      "type": "TestCategory",
+      "description": "fffff",
+      "completed": true,
+      "dataEnd": "2024-11-01",
+      "dataEndHours": ""
+    },
+    {
+      "id": "4ef7",
+      "title": "Fffff",
+      "type": "Testing",
+      "description": "Fffff",
+      "completed": true,
+      "dataEnd": "2024-11-21",
+      "dataEndHours": "18:39"
+    },
+    {
+      "id": "dcd0",
+      "title": "Fffff",
+      "type": "Testing",
+      "description": "Fffff",
+      "completed": true,
+      "dataEnd": "2024-11-21",
+      "dataEndHours": "18:39"
     }
   ]
 }

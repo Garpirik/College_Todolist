@@ -2,9 +2,11 @@ import { ITodo } from "../../../models/ITodo";
 import { TodoAPI } from "../../../Service/TodoService";
 import FormTodo from "../../Form/FormTodo";
 import TodoItem from "../TodoItem/TodoItem";
+
 import s from "../TodoContainer/TodoContainer.module.css"
 import { isValidElement, useCallback, useEffect, useState } from "react";
 import update from 'immutability-helper'
+import TodoCategory from "../TodoCategory/TodoCategory";
 
 
 interface ValuesForm{
@@ -29,7 +31,7 @@ const TodoContainer: React.FC  = () =>{
    const [todos , setTodos] = useState<ITodo[]>(data || []) 
    const initialValues : ValuesForm = { type : '', title : '', description :'', completed : false, dataEnd : "", dataEndHours : ""}
     console.log(todos)
-   const typesTodo  = new Set()
+   const typesTodo    = new Set<string>([])
    let uniqueTypes : string[] = [];
 
     for(let i : number = 0; i < todos.length ;i++){
@@ -46,6 +48,8 @@ const TodoContainer: React.FC  = () =>{
   useEffect(() =>{
     if(data){
     setTodos(data)}
+
+    
   }, [data])
    
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
@@ -64,7 +68,7 @@ const TodoContainer: React.FC  = () =>{
 
 
    const createTodoButton = async  (todo : ITodo)  =>{
-        await createTodo({title: todo.title, description: todo.description, completed: todo.completed ,dataEnd: todo.dataEnd , dataEndHours : todo.dataEndHours } as unknown as ITodo)
+        await createTodo({title: todo.title, type: todo.type ,description: todo.description, completed: todo.completed ,dataEnd: todo.dataEnd , dataEndHours : todo.dataEndHours } as unknown as ITodo)
    } 
 
    const handleRemove = async ( todo: ITodo) =>{
@@ -80,12 +84,16 @@ const TodoContainer: React.FC  = () =>{
         <div className={s.wrapper}>
         {isLoading && <div>Loading...</div>}
         {error && <div> error </div>}
+
     <div className={s.wrapperTodo}>
-        {typesTodo && typesTodo.forEach(value => {<h1>{value}</h1>})}
-         {todos && todos.map((el, i) =>  <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
+     {uniqueTypes && uniqueTypes.map((type, i) => <TodoCategory  todos={todos} uniqueCategory={type} index={i} remove={handleRemove} update={handleUpdate} moveCard={moveCard}  /> )}
+         {/* {todos && todos.map((el, i) =>  <TodoItem key={el.id} todo={el} remove={handleRemove} update={handleUpdate}  moveCard = {moveCard} index={i}/>    
         
-    )} 
-        <FormTodo initialValues={initialValues} textSubmit="Add" onSubmit={(value) => {createTodoButton(value)}} />
+    )}  */}
+
+    </div>
+    <div className={s.formCreate}>
+    <FormTodo initialValues={initialValues} textSubmit="Add" onSubmit={(value) => {createTodoButton(value)}} />
     </div>
         {/* <button onClick={() => createTodoButton()}>Create POST</button> */}
         </div>
