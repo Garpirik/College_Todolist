@@ -9,7 +9,7 @@ import ThemeContext, { useTheme } from './theme/ThemeContext'
 
 function App() {
 
-  const{isDark , toggleTheme} = useTheme()
+  const{isDark } = useTheme()
   return (
     <div className={isDark ? s.darkTheme: s.lightTheme }>
     <Header />

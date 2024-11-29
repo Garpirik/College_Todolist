@@ -1,8 +1,7 @@
-.DarkTheme{
-    background-color: black;
-    color: white;
+.wrapper{
+    display: flex;
+    justify-content: right;
 }
-.LightTheme{
-    background-color: white;
-    color: black;
+img{
+    cursor :pointer;
 }

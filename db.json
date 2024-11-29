@@ -3,7 +3,7 @@
     {
       "id": "4afb",
       "type": "Learn",
-      "title": "Need to learn TS",
+      "title": "Need learn TS",
       "description": "Yessr",
       "completed": true,
       "dataEnd": "2024-11-14",
@@ -13,19 +13,10 @@
       "id": "bea5",
       "type": "Testing",
       "title": "TDDD",
-      "description": "TDD",
+      "description": "TDDTest",
       "completed": true,
       "dataEnd": "2024-11-29",
       "dataEndHours": "02:32"
-    },
-    {
-      "id": "e3bf",
-      "type": "Testing",
-      "title": "TestSS",
-      "description": "Testt",
-      "completed": false,
-      "dataEnd": "2024-11-21",
-      "dataEndHours": ""
     },
     {
       "id": "419c",
@@ -34,15 +25,6 @@
       "description": "22",
       "completed": false,
       "dataEnd": "2024-11-09",
-      "dataEndHours": ""
-    },
-    {
-      "id": "1bad",
-      "title": "CategoryTest2",
-      "type": "TestCategory",
-      "description": "fffff",
-      "completed": true,
-      "dataEnd": "2024-11-01",
       "dataEndHours": ""
     },
     {
@@ -71,6 +53,24 @@
       "completed": false,
       "dataEnd": "2024-11-22",
       "dataEndHours": "23:41"
+    },
+    {
+      "id": "730d",
+      "title": "Andrey",
+      "type": "Osu",
+      "description": "Need play osu mania",
+      "completed": true,
+      "dataEnd": "2024-11-23",
+      "dataEndHours": "05:05"
+    },
+    {
+      "id": "0d54",
+      "title": "Wide1",
+      "type": "Wide",
+      "description": "IsWide",
+      "completed": true,
+      "dataEnd": "2024-11-24",
+      "dataEndHours": ""
     }
   ]
 }
