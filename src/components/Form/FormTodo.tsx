@@ -49,7 +49,7 @@ const FormTodo  = ({initialValues, onSubmit, textSubmit} : FormProps) =>{
                 <div><label htmlFor="time">Time</label></div>
                 <Field type="time" id="createdAtHours" name="dataEndHours" placeholder="Create at"  />
             <div>
-                <button type="submit">{textSubmit}</button></div>
+                <button type="submit" className={s.submitButton}>{textSubmit}</button></div>
             </Form>
         )}
         </Formik>

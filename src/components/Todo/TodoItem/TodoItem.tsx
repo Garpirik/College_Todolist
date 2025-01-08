@@ -70,7 +70,7 @@ const TodoItem : React.FC <TodoItemProps>  = ({todo, remove, update, moveCard,  
         const clientOffset = monitor.getClientOffset()
   
         // Get pixels to the top
-        const hoverClientY = (clientOffset as XYCoord).x - hoverBoundingRect.left
+        const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.left
   
         // Only perform the move when the mouse has crossed half of the items height
         // When dragging downwards, only move when the cursor is below 50%
@@ -121,7 +121,7 @@ drag(drop(ref))
             
             {IsEnded  > Number(deadlineData) && !isComplete ? <img src="https://cdn-icons-png.flaticon.com/512/1810/1810745.png" width="24px" height="24px" className={s.imgStatus}  />:  isComplete ? <img src="https://static-00.iconduck.com/assets.00/process-completed-symbolic-icon-2048x2048-baquwdk1.png" width="24px" height="24px" className={s.imgStatus} /> : <img src="https://static.thenounproject.com/png/2931158-200.png" width="24px" height="24px" className={s.imgStatus}  /> }
             <p>{todo.description} </p> 
-            <p> deadline :   {deadlineData.getDate()  }.{deadlineData.getMonth() + 1}.{deadlineData.getFullYear()} {todo.dataEndHours}  </p>
+            <p style={{fontSize: "12px"}}> deadline :   {deadlineData.getDate()  }.{deadlineData.getMonth() + 1}.{deadlineData.getFullYear()} {todo.dataEndHours}  </p>
 
             <div className={s.buttonsControl}>
             <button onClick={() => setEdit(!isEdit)}><img src="https://icons.veryicon.com/png/o/miscellaneous/linear-small-icon/edit-246.png" width="24px" height="24px" /></button>
